@@ -1,0 +1,6 @@
+{
+    "require": {
+        "razorpay/razorpay": "^2.8",
+        "phpmailer/phpmailer": "^7.0"
+    }
+}

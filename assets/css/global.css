@@ -1,0 +1,77 @@
+::-webkit-scrollbar {
+     display: none;
+}
+ html {
+     scrollbar-width: none;
+}
+ #myCanvas {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     z-index: -10;
+}
+ .mobile-nav-panel {
+     max-height: 0;
+     transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+     overflow: hidden;
+}
+ .mobile-nav-panel.open {
+     max-height: 80vh;
+     overflow-y: auto;
+}
+ .mobile-submenu {
+     transition: max-height 0.3s ease-in-out;
+     max-height: 0;
+     overflow: hidden;
+}
+ .mobile-submenu.open {
+     max-height: 500px;
+}
+
+/*-----------------------------*/
+/* 💻 Desktop Dropdown Styles */
+ @media (min-width: 1024px) {
+     .dropdown-area {
+         display: none !important;
+         opacity: 0;
+         transform: translateY(10px);
+         transition: opacity 0.3s ease, transform 0.3s ease;
+         pointer-events: none;
+         width: 250px;
+    }
+     .group:hover > a + .dropdown-area {
+         display: block !important;
+         opacity: 1;
+         transform: translateY(0);
+         pointer-events: auto;
+    }
+     .desktop-dropdown-list a:hover {
+         background-color: #ebf5ff;
+        /* Light blue hover */
+         color: #2563eb;
+        /* Blue text */
+    }
+}
+
+ 
+/*------------------------*/
+/* FAQ Smooth Transition */
+ .faq-content {
+     max-height: 0;
+     overflow: hidden;
+     transition: max-height 0.5s ease, opacity 0.4s ease;
+     opacity: 0;
+}
+ .faq-content.open {
+     max-height: 500px;
+    /* adjust as needed */
+     opacity: 1;
+}
+ .faq-toggle span.icon {
+     transition: transform 0.3s ease;
+}
+ .faq-toggle.open span.icon {
+     transform: rotate(45deg);
+}
