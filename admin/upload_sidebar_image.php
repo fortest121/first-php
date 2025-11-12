@@ -17,6 +17,9 @@ require_once $autoload_path;  // This is the correct path
     "api_secret" => "y-Mkkvmzq3qnEL2LmEHyEsWVCok"
 ));
 
+
+// echo "i am raja";
+
 // Debug: Check Cloudinary connection status
 echo "<pre>";
 echo "Cloudinary Config: ";
