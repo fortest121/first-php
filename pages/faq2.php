@@ -64,7 +64,7 @@ $faqs = $faqStmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden">
                     <div class="p-5 bg-blue-700 text-white">
                         <h3 class="text-xl font-bold mb-1">GST LUT FORM</h3>
-                        <p class="text-sm opacity-90">Filing of GST LUT Form for Exporters - indianfilings</p>
+                        <p class="text-sm opacity-90">Filing of GST LUT Form for Exporters - clientfilingindia</p>
                     </div>
                     <div class="relative h-40 overflow-hidden">
                         <img src="assets/images/container3.jpg" alt="Shipping port with containers" class="w-full h-full object-cover">
