@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "config/config.php";
+require_once "./config/config.php";
 
 // 🔹 Check if admin logged in
 if (!isset($_SESSION['admin_logged_in'])) {

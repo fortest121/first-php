@@ -72,23 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
 // Water ripple effect on mouse hover
 const rippleContainer = document.getElementById('ripple-container');
 
-// Find the ripple container
-const rippleContainer = document.querySelector('section');
-
 // Trigger ripple effect on mouse move
-rippleContainer.addEventListener('mousemove', (e) => {
+document.querySelector('section').addEventListener('mousemove', (e) => {
     // Create ripple element
     const ripple = document.createElement('div');
-    ripple.classList.add('ripple', 'ripple-darkish-white'); // Add ripple class for styling
+    ripple.classList.add('ripple', 'ripple-darkish-white'); // Add the new darkish white ripple class
 
-    // Randomize the size of the ripple
-    const size = Math.random() * 50 + 60; // Size between 60px and 110px
+    // Calculate ripple position and size
+    const size = Math.random() * 50 + 60; // Random size between 60px and 110px
+    const x = e.clientX - size / 2; // Position the ripple at mouse X
+    const y = e.clientY - size / 2; // Position the ripple at mouse Y
 
-    // Calculate ripple position based on mouse position (no offset)
-    const x = e.clientX - size / 2; // Position ripple so it starts under the mouse
-    const y = e.clientY - size / 2; // Position ripple so it starts under the mouse
-
-    // Apply styles to ripple
+    // Apply styles
     ripple.style.left = `${x}px`;
     ripple.style.top = `${y}px`;
     ripple.style.width = `${size}px`;
@@ -101,4 +96,24 @@ rippleContainer.addEventListener('mousemove', (e) => {
     setTimeout(() => {
         ripple.remove();
     }, 1500);
+});
+
+
+// For FAQ2.php Section -----------
+// -------------------------------
+//  Accordion logic (only one open at a time)
+
+document.addEventListener('DOMContentLoaded', () => {
+    const detailsElements = document.querySelectorAll('#faq-list details');
+    detailsElements.forEach((targetDetail) => {
+        targetDetail.addEventListener('toggle', () => {
+            if (targetDetail.open) {
+                detailsElements.forEach((detail) => {
+                    if (detail !== targetDetail && detail.open) {
+                        detail.open = false;
+                    }
+                });
+            }
+        });
+    });
 });

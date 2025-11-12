@@ -1,6 +1,7 @@
 {
     "require": {
         "razorpay/razorpay": "^2.8",
-        "phpmailer/phpmailer": "^7.0"
+        "phpmailer/phpmailer": "^7.0",
+        "cloudinary/cloudinary_php": "^2.14"
     }
 }
