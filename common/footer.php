@@ -104,7 +104,7 @@
       <div class="flex flex-wrap justify-center md:justify-start gap-5 mb-4 md:mb-0">
         <a href="#" class="hover:text-white transition-all">About Us</a>
         <a href="#" class="hover:text-white transition-all">Services</a>
-        <a href="../pages/contact.php" class="hover:text-white transition-all">Contact Us</a>
+        <a href="pages/contact" class="hover:text-white transition-all">Contact Us</a>
       </div>
       <div class="flex flex-wrap justify-center md:justify-end gap-5">
         <a href="#" class="hover:text-white transition-all">Terms & Conditions</a>
