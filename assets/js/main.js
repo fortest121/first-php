@@ -117,3 +117,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// For Footer Section -----------
+// -------------------------------
+//  for showing the curret year
+
+document.addEventListener('DOMContentLoaded', function() {
+    // This code only runs after the entire HTML document is fully loaded and parsed.
+
+    // 1. Get the current year
+    const date = new Date();
+    const currentYear = date.getFullYear();
+
+    // 2. Find the target element by its ID (It WILL exist now)
+    const yearSpan = document.getElementById('currentYear');
+
+    // 3. Update the content
+    if (yearSpan) {
+        yearSpan.textContent = currentYear;
+    }
+});

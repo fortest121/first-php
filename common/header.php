@@ -2,6 +2,8 @@
 <?php
 require_once "config/config.php";
 
+define('BASE_URL', '/clientfilingindiademo/'); 
+
 // --- GLOBAL SITE SEO DEFAULTS ---
 $site_name = "Client Filing India";
 $site_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
@@ -64,15 +66,16 @@ function fetch_services($conn, $cat_id) {
     <link rel="stylesheet" href="assets/css/global.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/jquery.ripples@0.6.3/dist/jquery.ripples.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.ripples@0.6.3/dist/jquery.ripples.min.js"></script>
+
 </head>
 
-<body class="bg-gray-900"> <!-- <body class="bg-gray-50"> for white background -->
+<body> <!-- <body class="bg-gray-50"> for white background -->
     <canvas id="myCanvas"></canvas>
     <header class="bg-blue-700 shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             
-            <a href="index.php" class="flex items-center gap-2 text-white font-bold tracking-wide" title="<?= htmlspecialchars($site_name) ?>">
+            <a href="<?= BASE_URL ?>" class="flex items-center gap-2 text-white font-bold tracking-wide" title="<?= htmlspecialchars($site_name) ?>">
                 <img src="assets/images/site_logo.webp" alt="<?= htmlspecialchars($site_name) ?> Logo" class="h-12 w-12 rounded-full">
             </a>
 
@@ -94,7 +97,7 @@ function fetch_services($conn, $cat_id) {
                                        
                                         <?php foreach ($services as $srv): ?>
                                             <li role="none">
-                                                <a href="details.php?slug=<?= urlencode($srv['slug']) ?>"
+                                                <a href="details?slug=<?= urlencode($srv['slug']) ?>"
                                                     class="block px-4 py-2 text-gray-700 transition" role="menuitem">
                                                     <?= htmlspecialchars($srv['name']) ?>
                                                 </a>
@@ -136,7 +139,7 @@ function fetch_services($conn, $cat_id) {
                                 <ul>
                                     <?php foreach ($services as $srv): ?>
                                         <li>
-                                            <a href="details.php?slug=<?= urlencode($srv['slug']) ?>"
+                                            <a href="details?slug=<?= urlencode($srv['slug']) ?>"
                                                 class="block pl-8 pr-4 py-2 text-white/90 hover:bg-blue-700 hover:text-white transition text-sm font-light">
                                                 <i class="fas fa-angle-right mr-2 text-xs" aria-hidden="true"></i>
                                                 <?= htmlspecialchars($srv['name']) ?>
