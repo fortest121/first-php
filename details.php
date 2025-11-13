@@ -23,32 +23,30 @@ if (!$service) {
     die("❌ Service not found for slug: " . htmlspecialchars($slug));
 }
 
-// echo "<!-- ✅ Debug: Service slug = {$slug}, Service ID = {$service['id']}, Service name = {$service['name']} -->";
+// echo "";
 ?>
 
-<!-- 🔹 Service Details Section -->
-<div class="container mx-auto mt-10 p-6 bg-white rounded shadow">
-    <h1 class="text-3xl font-bold text-gray-900 mb-6 hover:text-indigo-600 transition-all duration-300 ease-in-out">
+<div class="container mx-auto mt-12 mb-12 p-8 rounded-xl shadow-2xl border border-gray-200 bg-white">   
+    <h1 class="text-4xl font-extrabold text-white mb-6 border-l-4 border-yellow-500 pl-4 hover:text-yellow-500 transition-colors duration-300">
         <?= htmlspecialchars($service['name']) ?>
     </h1>
 
-    <div class="prose max-w-full">
+    <div class="prose prose-invert max-w-full text-gray-300">
         <?= $service['long_desc'] ?>
     </div>
 </div>
 
-<hr class="my-8 border-gray-300">
+<hr class="my-10 border-gray-700">
 
-<!-- 🔹 Include Dynamic FAQ Section -->
 <?php
 $faqPath = __DIR__ . "/pages/faq2.php";
 if (file_exists($faqPath)) {
-    echo "<!-- ✅ Including FAQ file from: {$faqPath} -->";
+    echo "";
+    // NOTE: Ensure faq2.php content also uses the dark theme styling.
     include $faqPath;
 } else {
-    echo "<!-- ❌ FAQ file not found at {$faqPath} -->";
+    echo "";
 }
 ?>
 
-<!-- 🔹 Footer -->
 <?php include "common/footer.php"; ?>

@@ -2,21 +2,21 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// 🟦 DEBUG: Check if service data exists
+// 🟦 Check if service data exists
 if (!isset($service) || empty($service['id'])) {
     echo "<p style='color:red;'>❌ Service variable not found or empty in faq2.php</p>";
     return;
 }
 
-// 🟦 DEBUG: Check DB connection
+// 🟦 Check DB connection
 if (!isset($conn)) {
     echo "<p style='color:red;'>❌ Database connection not found!</p>";
     return;
 }
 
-// 🟦 Fetch FAQ data
+// 🟩 Fetch FAQs
 $faqStmt = $conn->prepare("
-    SELECT id, question, answer, service_id
+    SELECT id, question, answer 
     FROM faq_list 
     WHERE service_id = :sid AND status = 1
     ORDER BY id ASC
@@ -24,7 +24,15 @@ $faqStmt = $conn->prepare("
 $faqStmt->execute(['sid' => $service['id']]);
 $faqs = $faqStmt->fetchAll(PDO::FETCH_ASSOC);
 
-// echo "<p style='color:blue;'>ℹ️ " . count($faqs) . " FAQs fetched for service_id = {$service['id']}</p>";
+// 🟦 Fetch Sidebar Cards (Dynamic)
+$sidebarStmt = $conn->prepare("
+    SELECT title, subtitle, image_url, link_url
+    FROM service_sidebar_images
+    WHERE service_id = :sid
+    ORDER BY id DESC
+");
+$sidebarStmt->execute(['sid' => $service['id']]);
+$sidebarCards = $sidebarStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <section class="py-16 md:py-24 bg-gray-50">
@@ -60,36 +68,28 @@ $faqs = $faqStmt->fetchAll(PDO::FETCH_ASSOC);
 
             <!-- 🟦 Sidebar Column -->
             <div class="md:col-span-1 mt-12 md:mt-0 space-y-8">
-                <!-- Sidebar Card 1 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                    <div class="p-5 bg-blue-700 text-white">
-                        <h3 class="text-xl font-bold mb-1">GST LUT FORM</h3>
-                        <p class="text-sm opacity-90">Filing of GST LUT Form for Exporters - clientfilingindia</p>
-                    </div>
-                    <div class="relative h-40 overflow-hidden">
-                        <img src="assets/images/container3.jpg" alt="Shipping port with containers" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-5">
-                        <p class="text-lg font-semibold text-gray-800">GST LUT Form</p>
-                    </div>
-                </div>
-
-                <!-- Sidebar Card 2 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                    <div class="p-5 bg-blue-700 text-white">
-                        <h3 class="text-xl font-bold mb-1">GST ANNUAL RETURN FILING (GSTR-9)</h3>
-                        <p class="text-sm opacity-90">GST annual return filing for registered taxpayers</p>
-                    </div>
-                    <div class="relative h-40 overflow-hidden">
-                        <img src="assets/images/tax2.jpg" alt="Tax documents and calculator" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-5">
-                        <p class="text-lg font-semibold text-gray-800">GST Annual Return (GSTR-9)</p>
-                    </div>
-                </div>
+                <?php if (!empty($sidebarCards)): ?>
+                    <?php foreach ($sidebarCards as $card): ?>
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow">
+                            <a href="<?= htmlspecialchars($card['link_url']) ?>" target="_blank">
+                                <div class="p-5 bg-blue-700 text-white">
+                                    <h3 class="text-xl font-bold mb-1"><?= htmlspecialchars($card['title']) ?></h3>
+                                    <p class="text-sm opacity-90"><?= htmlspecialchars($card['subtitle']) ?></p>
+                                </div>
+                                <!-- ✅ FIXED IMAGE SIZE -->
+                                <div class="relative w-full h-48 overflow-hidden bg-gray-100">
+                                    <img src="<?= htmlspecialchars($card['image_url']) ?>" 
+                                         alt="<?= htmlspecialchars($card['title']) ?>" 
+                                         class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                                </div>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="text-gray-600 italic">No sidebar images available for this service.</p>
+                <?php endif; ?>
             </div>
+
         </div>
     </div>
 </section>
-
-<!-- 🟨 Optional JS: -->

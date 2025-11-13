@@ -1,6 +1,8 @@
 <?php
 session_start();
-require_once "config/config.php";
+// NOTE: Assuming config.php is located outside the 'auth' folder, 
+// the path 'config/config.php' might need adjustment based on your exact structure.
+require_once "../config/config.php";
 
 // 🔹 Handle login
 if (isset($_POST['username'], $_POST['password'])) {
@@ -14,7 +16,11 @@ if (isset($_POST['username'], $_POST['password'])) {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['admin_logged_in'] = true;
         $_SESSION['admin_id'] = $user['id'];
-        header("Location: dashboard.php");
+        
+        // 🌟 CHANGE IS HERE 🌟
+        // Redirect to dashboard2.php inside the 'admin' folder
+        // The path 'Location: ../admin/dashboard2.php' is relative to the current script's location (auth/admin_auth.php)
+        header("Location: ../admin/dashboard2.php"); 
         exit;
     } else {
         $error = "Incorrect username or password!";
@@ -24,7 +30,8 @@ if (isset($_POST['username'], $_POST['password'])) {
 // 🔹 Handle logout
 if (isset($_GET['logout'])) {
     session_destroy();
-    header("Location: admin_auth.php");
+    // Redirect back to the login script itself
+    header("Location: admin_auth.php"); 
     exit;
 }
 

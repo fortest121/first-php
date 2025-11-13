@@ -67,7 +67,7 @@ function fetch_services($conn, $cat_id) {
 	<script src="https://cdn.jsdelivr.net/npm/jquery.ripples@0.6.3/dist/jquery.ripples.min.js"></script>
 </head>
 
-<body class="bg-gray-50">
+<body class="bg-gray-900"> <!-- <body class="bg-gray-50"> for white background -->
     <canvas id="myCanvas"></canvas>
     <header class="bg-blue-700 shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
