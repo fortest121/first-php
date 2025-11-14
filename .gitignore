@@ -9,17 +9,13 @@ Thumbs.db
 *.sublime-project
 *.log
 
-# Ignore composer and other dependency manager files
-/vendor/
-composer.lock
-
 # Ignore environment-specific files
-/.env
-/.env.local
-/.env.*.local
+.env
+.env.local
+.env.*.local
 
 # Ignore cache and temporary files
-/cache/
+cache/
 *.log
 *.sql
 *.sqlite
@@ -30,23 +26,24 @@ composer.lock
 # Ignore compiled and build files
 *.phar
 *.tar
-*.zip
 *.tar.gz
 *.tar.bz2
 
-# Ignore PHPUnit output
+# PHPUnit output
 phpunit.xml
 phpunit.xml.dist
 coverage/
 
-# Ignore Xdebug profiling output
+# Xdebug profiling
 .profiler/
 
-# Ignore .git directory and any hidden files/folders that shouldn't be tracked
-.git/
+# Ignore Git metadata
 *.bak
 *.tmp
-*.swp
-
-# Ignore all IDE or text editor backup files
 *~
+
+# DO NOT ignore vendor (required for Wasmer)
+# DO NOT ignore composer.lock (optional but fine to include)
+
+# Allow ZIP files (since you may upload ZIP to Wasmer)
+!*.zip

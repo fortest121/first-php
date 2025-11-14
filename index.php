@@ -28,6 +28,7 @@ $routes = [
     'about'         => 'pages/about.php',
     'contact'       => 'pages/contact.php',
     'services'      => 'pages/all_services.php', 
+    'admin'         => 'admin/dashboard2.php',
     
     // Dynamic Pages
     // For URL /clientfilingindiademo/details/some-slug
@@ -79,7 +80,7 @@ require_once "common/footer.php";
 ?>
 
 
-
+<!-- commented -->
 <!-- <?php include "common/header.php" ?>
 <?php include "pages/hero.php" ?>
 <?php include "pages/services.php" ?>
